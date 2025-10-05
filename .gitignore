@@ -1,0 +1,11 @@
+# Python virtual environment
+.venv/
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl
+
+# OS files
+.DS_Store

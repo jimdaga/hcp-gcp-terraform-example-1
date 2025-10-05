@@ -1,0 +1,10 @@
+stg:
+  - us-central1
+  - us-east2
+
+prd:
+  - us-central1
+
+int:
+  - us-central1
+  - us-east2

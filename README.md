@@ -31,8 +31,8 @@ vpc:
 ### Dynamic Module Instantiation
 
 Each YAML file in a directory automatically creates a separate infrastructure stack. For example:
-- `jdagosti.yaml` ’ `module.hcp_gcp_regional_stack["jdagosti"]`
-- `canary.yaml` ’ `module.hcp_gcp_regional_stack["canary"]`
+- `jdagosti.yaml` ï¿½ `module.hcp_gcp_regional_stack["jdagosti"]`
+- `canary.yaml` ï¿½ `module.hcp_gcp_regional_stack["canary"]`
 
 This is achieved through Terraform's `for_each` with `fileset()` and `yamldecode()` functions.
 
@@ -55,6 +55,36 @@ environments/
 modules/
   hcp-gcp-regional-stack/   # Reusable Terraform module
 ```
+
+## Setup
+
+### Creating Region Structure
+
+The repository uses a `regions.yaml` file at the root to define which regions should exist under each environment (stg, prd, int):
+
+```yaml
+stg:
+  - us-central1
+  - us-east2
+
+prd:
+  - us-central1
+
+int:
+  - us-central1
+```
+
+To create the directory structure for all defined regions:
+
+```bash
+make region
+```
+
+This will:
+- Read `regions.yaml`
+- Create `environments/<env>/region/<region>` directories for each region
+- Generate a `main.tf` file in each directory with the correct region set in `local.region`
+- Skip directories/files that already exist (idempotent)
 
 ## Usage
 
