@@ -8,6 +8,10 @@ locals {
     trimsuffix(basename(file_path), ".yaml") => yamldecode(file(file_path))
   }
   region = "us-central1"
+
+  # 3. Load module reference from regions.yaml
+  regions_config = yamldecode(file("../../../../regions.yaml"))
+  module_source  = "git::https://github.com/jimdaga/hcp-gcp-terraform-example-1.git//modules/hcp-gcp-regional-stack?ref=${local.regions_config.stg.module_ref}"
 }
 
 # The module block uses 'for_each' to create multiple instances.
@@ -15,7 +19,7 @@ locals {
 module "hcp_gcp_regional_stack" {
   for_each = local.user_configs
 
-  source = "../../../../modules/hcp-gcp-regional-stack"
+  source = local.module_source
 
   # Pass the configuration for the current user (each.value) directly
   # to the corresponding module arguments.

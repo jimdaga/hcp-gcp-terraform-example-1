@@ -1,10 +1,16 @@
 stg:
-  - us-central1
-  - us-east2
+  module_ref: "72fd91acb430cdc3cc2c515dfe6101dd0020b5f6"
+  regions:
+    - us-central1
+    - us-east2
 
 prd:
-  - us-central1
+  module_ref: "72fd91acb430cdc3cc2c515dfe6101dd0020b5f6"
+  regions:
+    - us-central1
 
 int:
-  - us-central1
-  - us-east2
+  module_ref: "72fd91acb430cdc3cc2c515dfe6101dd0020b5f6"
+  regions:
+    - us-central1
+    - us-east2
