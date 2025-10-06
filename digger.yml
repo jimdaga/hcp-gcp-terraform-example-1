@@ -1,0 +1,6 @@
+projects:
+  - name: stg-us-central1
+    dir: environments/stg/region/us-central1
+    terraform: true
+    opentofu: false
+
