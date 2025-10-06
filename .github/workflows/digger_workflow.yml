@@ -30,7 +30,7 @@ jobs:
           digger-spec: ${{ inputs.spec }}
           setup-terraform: true
           terraform-version: 1.5.6
-          setup-google-cloud: true
+          setup-google-cloud: false
           google-cloud-credentials: ${{ secrets.GOOGLE_CLOUD_CREDENTIALS }}
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
