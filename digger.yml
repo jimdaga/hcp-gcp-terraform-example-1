@@ -1,9 +1,9 @@
-projects:
-  - name: stg-us-central1
-    dir: environments/stg/region/us-central1
-    terraform: true
-    opentofu: false
-  - name: stg-us-east2
-    dir: environments/stg/region/us-east2
-    terraform: true
-    opentofu: false
+# projects:
+#   - name: stg-us-central1
+#     dir: environments/stg/region/us-central1
+#     terraform: true
+#     opentofu: false
+#   - name: stg-us-east2
+#     dir: environments/stg/region/us-east2
+#     terraform: true
+#     opentofu: false
