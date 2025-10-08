@@ -5,6 +5,6 @@ gke:
   mode: "split"
   type: "standard"
 vpc:
-  cidr: "10.11.0.0/16"
+  cidr: "10.12.0.0/16"
   subnet:
-    - { name: "infra", cidr: "10.11.1.0/24" }
+    - { name: "infra", cidr: "10.12.1.0/24" }
