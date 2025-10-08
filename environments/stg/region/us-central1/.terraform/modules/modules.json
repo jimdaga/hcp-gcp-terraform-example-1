@@ -1,1 +1,0 @@
-{"Modules":[{"Key":"","Source":"","Dir":"."},{"Key":"hcp_gcp_regional_stack","Source":"git::https://github.com/jimdaga/hcp-gcp-terraform-example-1.git//modules/hcp-gcp-regional-stack?ref=72fd91acb430cdc3cc2c515dfe6101dd0020b5f6","Dir":".terraform/modules/hcp_gcp_regional_stack/modules/hcp-gcp-regional-stack"}]}
