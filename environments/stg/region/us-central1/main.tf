@@ -28,6 +28,8 @@ module "im_workspace" {
 
   github_app_installation_id   = "89266066"
   github_personal_access_token = data.google_secret_manager_secret_version.github_pat.secret_data
+
+  tf_version = "1.5.7"
 }
 
 # The module block uses 'for_each' to create multiple instances.
