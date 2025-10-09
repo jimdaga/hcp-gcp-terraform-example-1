@@ -12,6 +12,7 @@ locals {
 
 resource "null_resource" "example" {}
 resource "null_resource" "example2" {}
+resource "null_resource" "example3" {}
 
 data "google_secret_manager_secret_version" "github_pat" {
   project = "jimd-gcp-hcp-1"
