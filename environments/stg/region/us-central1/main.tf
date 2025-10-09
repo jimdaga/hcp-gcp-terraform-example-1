@@ -23,8 +23,9 @@ module "im_workspace" {
   im_deployment_repo_uri = "https://github.com/jimdaga/hcp-gcp-terraform-example-1"
   im_deployment_ref      = "main"
 
-  infra_manager_sa = "projects/jimd-gcp-hcp-1/serviceAccounts/infra-manager@jimd-gcp-hcp-1.iam.gserviceaccount.com"
+  infra_manager_sa       = "projects/jimd-gcp-hcp-1/serviceAccounts/infra-manager@jimd-gcp-hcp-1.iam.gserviceaccount.com"
   infra_manager_sa_roles = ["roles/owner"] # TODO: This is just a hack to get the infra manager working.
+  im_deployment_repo_dir = "./environments/stg/region/us-central1"
 
   github_app_installation_id   = "89266066"
   github_personal_access_token = data.google_secret_manager_secret_version.github_pat.secret_data
