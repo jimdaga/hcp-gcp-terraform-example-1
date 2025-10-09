@@ -1,8 +1,8 @@
 version: 3
 projects:
 - name: int-us-central1
-  dir: environments/int/region/us-central1
+  dir: environments/stg/region/us-central1
   workspace: us-central1
 - name: int-us-east2
-  dir: environments/int/region/us-east2
+  dir: environments/stg/region/us-east2
   workspace: us-east2
