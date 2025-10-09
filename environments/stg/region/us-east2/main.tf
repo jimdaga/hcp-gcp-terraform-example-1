@@ -10,7 +10,7 @@ locals {
   region = "us-east2"
 }
 
-resource "null_resource" "example" {}
+# resource "null_resource" "example" {}
 
 # The module block uses 'for_each' to create multiple instances.
 # Each instance is named after the YAML file (e.g., module.hcp_gcp_regional_stack["bob"]).
