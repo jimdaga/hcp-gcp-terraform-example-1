@@ -5,6 +5,6 @@ gke:
   mode: "combined"
   type: "autopilot"
 vpc:
-  cidr: "10.14.0.0/16"
+  cidr: "10.15.0.0/16"
   subnet:
-    - { name: "infra", cidr: "10.14.1.0/24" }
+    - { name: "infra", cidr: "10.15.1.0/24" }
