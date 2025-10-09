@@ -10,29 +10,6 @@ locals {
   region = "us-east2"
 }
 
-data "google_secret_manager_secret_version" "github_pat" {
-  project = "jimd-gcp-hcp-1"
-  secret  = "github-pat"
-}
-module "im_workspace" {
-  source  = "terraform-google-modules/bootstrap/google//modules/im_cloudbuild_workspace"
-  version = "~> 7.0"
-
-  project_id             = "jimd-gcp-hcp-1"
-  deployment_id          = "stg-us-east2"
-  im_deployment_repo_uri = "https://github.com/jimdaga/hcp-gcp-terraform-example-1"
-  im_deployment_ref      = "main"
-
-  infra_manager_sa       = "projects/jimd-gcp-hcp-1/serviceAccounts/infra-manager@jimd-gcp-hcp-1.iam.gserviceaccount.com"
-  infra_manager_sa_roles = ["roles/owner"] # TODO: This is just a hack to get the infra manager working.
-  im_deployment_repo_dir = "./environments/stg/region/us-east2"
-
-  github_app_installation_id   = "89266066"
-  github_personal_access_token = data.google_secret_manager_secret_version.github_pat.secret_data
-
-  tf_version = "1.5.7"
-}
-
 # The module block uses 'for_each' to create multiple instances.
 # Each instance is named after the YAML file (e.g., module.hcp_gcp_regional_stack["bob"]).
 # Module ref managed in regions.yaml (stg.module_ref)
