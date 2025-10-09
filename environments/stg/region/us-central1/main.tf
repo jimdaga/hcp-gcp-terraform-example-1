@@ -10,6 +10,8 @@ locals {
   region = "us-central1"
 }
 
+resource "null_resource" "example" {}
+
 data "google_secret_manager_secret_version" "github_pat" {
   project = "jimd-gcp-hcp-1"
   secret  = "github-pat"
