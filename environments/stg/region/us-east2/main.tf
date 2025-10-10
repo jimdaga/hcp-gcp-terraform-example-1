@@ -10,7 +10,15 @@ locals {
   region = "us-east2"
 }
 
-resource "null_resource" "example" {}
+provider "google" {
+  project = "jimd-gcp-hcp-1"
+  region  = "us-central1"
+}
+
+resource "google_storage_bucket" "my_simple_bucket" {
+  name = "jimd-terraform-test-gcs-98765" 
+  location = "US-CENTRAL1"
+}
 
 # The module block uses 'for_each' to create multiple instances.
 # Each instance is named after the YAML file (e.g., module.hcp_gcp_regional_stack["bob"]).
