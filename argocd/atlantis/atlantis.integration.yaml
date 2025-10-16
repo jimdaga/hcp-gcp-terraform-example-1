@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: atlantis
+  name: atlantis-integration
   namespace: argocd
 spec:
   project: default
@@ -74,6 +74,7 @@ spec:
             allow_custom_workflows: true
             allowed_overrides: [workflow]
             allowed_workflows: [default]
+            repo_config_file: terraform/atlantis-integration.yaml
 
   destination:
     server: https://kubernetes.default.svc
