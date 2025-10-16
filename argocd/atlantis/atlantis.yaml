@@ -1,0 +1,97 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: atlantis
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    chart: atlantis
+    repoURL: https://runatlantis.github.io/helm-charts
+    targetRevision: 5.19.0
+    helm:
+      parameters:
+      - name: "githubApp.id"
+        value: "2117396"
+      - name: "githubApp.slug"
+        value: "hcm-atlantis-staging"
+      - name: "vcsSecretName"
+        value: "atlantis-github-app"
+      - name: "serviceAccount.create"
+        value: "false"
+      - name: "serviceAccount.name"
+        value: "atlantis-server"
+      - name: "orgAllowlist"
+        value: "github.com/openshift-online/*"
+      values: |
+        # Atlantis configuration
+
+        # Atlantis server configuration
+        atlantisUrl: https://atlantis.int.gcphcp.devshift.net  # Placeholder name
+
+        # Enable the Atlantis UI
+        enableDiffMarkdownFormat: true
+
+        # Resource limits
+        resources:
+          requests:
+            memory: 256Mi
+            cpu: 100m
+          limits:
+            memory: 1Gi
+            cpu: 1000m
+
+        # Persistence for Atlantis data
+        volumeClaim:
+          enabled: true
+          dataStorage: 5Gi
+          storageClassName: standard
+          accessModes:
+            - ReadWriteOnce
+
+        # Ingress configuration (optional, configure as needed)
+        ingress:
+          enabled: false
+          # annotations:
+          #   kubernetes.io/ingress.class: nginx
+          #   cert-manager.io/cluster-issuer: letsencrypt-prod
+          # hosts:
+          #   - host: atlantis.int.gcphcp.devshift.net
+          #     paths:
+          #       - path: /
+          #         pathType: Prefix
+          # tls:
+          #   - secretName: atlantis-tls
+          #     hosts:
+          #       - atlantis.int.gcphcp.devshift.net
+
+        # Volume mounts for repo config
+        repoConfig: |
+          ---
+          repos:
+          - id: /.*/
+            allow_custom_workflows: true
+            allowed_overrides: [workflow]
+            allowed_workflows: [default]
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: atlantis
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+
+
+
+
